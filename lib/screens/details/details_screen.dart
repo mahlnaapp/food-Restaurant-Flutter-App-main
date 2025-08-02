@@ -27,7 +27,7 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     child: Text(
                       restaurantName,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                   SizedBox(

@@ -21,12 +21,19 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-// START: FlutterFire Configuration
-apply plugin: 'com.google.gms.google-services'
-// END: FlutterFire Configuration
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+// ---------------------------------------------------------------- //
+// تم تعديل هذا الجزء لتحويل apply plugin إلى plugins block
+// هذا يحل مشكلة فشل البناء مع إصدارات Flutter الجديدة
+// ---------------------------------------------------------------- //
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    // تم استبدال 'apply from: "$flutterRoot/..."' بـ 'id "dev.flutter.flutter-gradle-plugin"'
+    id 'dev.flutter.flutter-gradle-plugin'
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+}
 
 android {
     namespace "com.example.foodly_ui"
@@ -52,7 +59,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 34 // تم تحديثه إلى 34 ليتوافق مع Flutter SDK الحديث
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
